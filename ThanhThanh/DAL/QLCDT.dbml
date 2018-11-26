@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLCuocDT" Class="QLCDTDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-3MGMVIV;Initial Catalog=QLCuocDT;Integrated Security=True" SettingsObjectName="ThanhThanh.Properties.Settings" SettingsPropertyName="QLCuocDTConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.CUOCTHUEBAO" Member="CUOCTHUEBAOs">
+    <Type Name="CUOCTHUEBAO">
+      <Column Name="IDcuoc" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Tencuoc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TGBD" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="TGKT" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Gia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Ngayapdung" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.THONGTINSIM" Member="THONGTINSIMs">
+    <Type Name="THONGTINSIM">
+      <Column Name="IDSim" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDKHACHHANG" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Sdt" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="NgayDK" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CuocDK" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="THONGTINSIM_HOADON" Member="HOADONs" ThisKey="IDSim" OtherKey="IDsim" Type="HOADON" />
+      <Association Name="THONGTINSIM_THOIGIANSUDUNG" Member="THOIGIANSUDUNGs" ThisKey="IDSim" OtherKey="IDSim" Type="THOIGIANSUDUNG" />
+      <Association Name="KHACHHANG_THONGTINSIM" Member="KHACHHANG" ThisKey="IDKHACHHANG" OtherKey="IDKHACHHANG" Type="KHACHHANG" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HOADON" Member="HOADONs">
+    <Type Name="HOADON">
+      <Column Name="IDHD" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDsim" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TGBD" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TGKT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SophutBN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SophutBD" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TongSoTien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Trangthai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="THONGTINSIM_HOADON" Member="THONGTINSIM" ThisKey="IDsim" OtherKey="IDSim" Type="THONGTINSIM" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KHACHHANG" Member="KHACHHANGs">
+    <Type Name="KHACHHANG">
+      <Column Name="IDKHACHHANG" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Tenkhachhang" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CMND" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="Nghenghiep" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Chucvu" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Diachi" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="KHACHHANG_THONGTINSIM" Member="THONGTINSIMs" ThisKey="IDKHACHHANG" OtherKey="IDKHACHHANG" Type="THONGTINSIM" />
+    </Type>
+  </Table>
+  <Table Name="dbo.THOIGIANSUDUNG" Member="THOIGIANSUDUNGs">
+    <Type Name="THOIGIANSUDUNG">
+      <Column Name="STT" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDSim" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="TGBD" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TGKT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SophutBN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SophutBD" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Gia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="THONGTINSIM_THOIGIANSUDUNG" Member="THONGTINSIM" ThisKey="IDSim" OtherKey="IDSim" Type="THONGTINSIM" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
