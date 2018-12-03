@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLCDT", "ThanhThanh\QLCDT.csproj", "{8809AF43-33E0-40B7-8D2A-1565B8DE7980}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLCuocDT", "..\WED\QLCDT\QLCuocDT\QLCuocDT.csproj", "{53A50F51-0CFD-4734-A10C-6233F0EC4DCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebQLCDT", "WebQLCDT\WebQLCDT.csproj", "{B23C73E7-26F3-4E6B-B62C-591DB87D201D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{8809AF43-33E0-40B7-8D2A-1565B8DE7980}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8809AF43-33E0-40B7-8D2A-1565B8DE7980}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8809AF43-33E0-40B7-8D2A-1565B8DE7980}.Release|Any CPU.Build.0 = Release|Any CPU
-		{53A50F51-0CFD-4734-A10C-6233F0EC4DCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53A50F51-0CFD-4734-A10C-6233F0EC4DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{53A50F51-0CFD-4734-A10C-6233F0EC4DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53A50F51-0CFD-4734-A10C-6233F0EC4DCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B23C73E7-26F3-4E6B-B62C-591DB87D201D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B23C73E7-26F3-4E6B-B62C-591DB87D201D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B23C73E7-26F3-4E6B-B62C-591DB87D201D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B23C73E7-26F3-4E6B-B62C-591DB87D201D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
