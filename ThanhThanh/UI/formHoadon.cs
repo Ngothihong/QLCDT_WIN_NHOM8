@@ -861,7 +861,7 @@ namespace ThanhThanh.UI
         {
             Load_Thoigiansudung();
         }
-        Bitmap bmp;
+       Bitmap bmp;
         private void buthoadon_Click(object sender, EventArgs e)
         {
             //Graphics g = this.CreateGraphics();

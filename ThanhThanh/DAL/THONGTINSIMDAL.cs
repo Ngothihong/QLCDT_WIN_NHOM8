@@ -13,6 +13,16 @@ namespace ThanhThanh.DAL
             QLCDTDataContext db = new QLCDTDataContext();
             return db.THONGTINSIMs.ToList();
         }
+        public List<THONGTINSIM> GetbySDT( string Sim)
+        {
+            QLCDTDataContext db = new QLCDTDataContext();
+            var thongtinsim1 = from x in db.THONGTINSIMs
+                               where x.Sdt == Sim
+                               orderby x.IDSim descending
+                               select x;
+            return thongtinsim1.ToList();
+
+        }
         public IEnumerable<string> GetAllIDSIM()
         {
             QLCDTDataContext db = new QLCDTDataContext();

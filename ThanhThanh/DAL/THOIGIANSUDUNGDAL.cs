@@ -13,13 +13,18 @@ namespace ThanhThanh.DAL
             QLCDTDataContext db = new QLCDTDataContext();
             return db.THOIGIANSUDUNGs.ToList();
         }
+        public List<THOIGIANSUDUNG> GebyIDSIM(string SIM)
+        {
+            QLCDTDataContext db = new QLCDTDataContext();
+            return db.THOIGIANSUDUNGs.Where(x => x.IDSim == SIM).ToList();
+        }
         public List<THOIGIANSUDUNG> Get_by_hoadon( HOADON a)
         {
             QLCDTDataContext db = new QLCDTDataContext();
             var abc = (from  thsd in db.THOIGIANSUDUNGs
                          where (thsd.IDSim == a.IDsim) && (thsd.TGBD >= a.TGBD) && (thsd.TGBD <= a.TGKT) 
                          select  thsd);
-
+           
             return abc.ToList();
         }
         public void insert_Thoigiansudung(THOIGIANSUDUNG a)
