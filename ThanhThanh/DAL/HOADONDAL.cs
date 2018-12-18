@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EF;
 
 namespace ThanhThanh.DAL
 {
-   partial class HOADON
+   public class HOADONDAL
     {
         public List<HOADON> GetAll()
         {

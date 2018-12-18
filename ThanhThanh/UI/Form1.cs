@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using ThanhThanh.UI;
 using System.IO;
 using ThanhThanh.DAL;
+using ThanhThanh.BUL;
+using EF;
 
 
 namespace ThanhThanh
@@ -60,15 +62,17 @@ namespace ThanhThanh
             Random rnd = new Random();
             //Open the File
                 StreamWriter sw = new StreamWriter(@"C:\Users\Hong\Desktop\Phan lop\ThanhThanh\Test1.txt");
-            THONGTINSIM tHONGTINSIM = new THONGTINSIM();
-            var list = tHONGTINSIM.GetAllIDSIM();
+            //THONGTINSIM tHONGTINSIM = new THONGTINSIM();
+            BUL_Thongtinsim bUL_Thongtinsim = new BUL_Thongtinsim();
+            BUL_Thoigiansudung bUL_Thoigiansudung = new BUL_Thoigiansudung();
+            var list = bUL_Thongtinsim.GetAllIDSIM();
             foreach (var item in list)
             {
                 
                 for (int i = 0; i < 10; i++)
                     {
                     THOIGIANSUDUNG tHOIGIANSUDUNG = new THOIGIANSUDUNG();
-                    tHOIGIANSUDUNG.IDSim = item.ToString();
+                    tHOIGIANSUDUNG.IDSim =  item;
                     // thoi gian bat dau    
                     month = rnd.Next(1, 12);
                      day = rnd.Next(1, 29);
@@ -103,12 +107,12 @@ namespace ThanhThanh
                             }
                     DateTime timey = new DateTime(year, month, day, hour, minutes, seconds);
                     tHOIGIANSUDUNG.TGKT = timey;
-                    tHOIGIANSUDUNG.SophutBN = tHOIGIANSUDUNG.tinhsophutbanngay1(timex , timey);
-                    tHOIGIANSUDUNG.SophutBD = tHOIGIANSUDUNG.tinhsophutbandem1(timex, timey);
-                    tHOIGIANSUDUNG.Gia = (float) tHOIGIANSUDUNG.tinhgia((float)tHOIGIANSUDUNG.SophutBN , (float)tHOIGIANSUDUNG.SophutBD);
+                    tHOIGIANSUDUNG.SophutBN =bUL_Thoigiansudung.tinhsophutbanngay1(timex , timey);
+                    tHOIGIANSUDUNG.SophutBD = bUL_Thoigiansudung.tinhsophutbandem1(timex, timey);
+                    tHOIGIANSUDUNG.Gia = (float)bUL_Thoigiansudung.tinhgia((float)tHOIGIANSUDUNG.SophutBN , (float)tHOIGIANSUDUNG.SophutBD);
                     
                             sw.WriteLine( item.ToString() + "   "+  timex.ToString() + "   " + timey.ToString());
-                    tHOIGIANSUDUNG.insert_Thoigiansudung(tHOIGIANSUDUNG);
+                    bUL_Thoigiansudung.insert_Thoigiansudung(tHOIGIANSUDUNG);
                     }
                   
                     //close the file

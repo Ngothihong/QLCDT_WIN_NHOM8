@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ThanhThanh.DAL
+namespace EF
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -48,7 +48,7 @@ namespace ThanhThanh.DAL
     #endregion
 		
 		public QLCDTDataContext() : 
-				base(global::ThanhThanh.Properties.Settings.Default.QLCuocDTConnectionString1, mappingSource)
+				base(global::EF.Properties.Settings.Default.QLCuocDTConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -306,7 +306,7 @@ namespace ThanhThanh.DAL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _IDSim;
+		private int _IDSim;
 		
 		private string _IDKHACHHANG;
 		
@@ -326,7 +326,7 @@ namespace ThanhThanh.DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDSimChanging(string value);
+    partial void OnIDSimChanging(int value);
     partial void OnIDSimChanged();
     partial void OnIDKHACHHANGChanging(string value);
     partial void OnIDKHACHHANGChanged();
@@ -346,8 +346,8 @@ namespace ThanhThanh.DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDSim", DbType="VarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string IDSim
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDSim", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IDSim
 		{
 			get
 			{
@@ -563,7 +563,7 @@ namespace ThanhThanh.DAL
 		
 		private string _IDHD;
 		
-		private string _IDsim;
+		private int _IDsim;
 		
 		private System.Nullable<System.DateTime> _TGBD;
 		
@@ -585,7 +585,7 @@ namespace ThanhThanh.DAL
     partial void OnCreated();
     partial void OnIDHDChanging(string value);
     partial void OnIDHDChanged();
-    partial void OnIDsimChanging(string value);
+    partial void OnIDsimChanging(System.Nullable<int> value);
     partial void OnIDsimChanged();
     partial void OnTGBDChanging(System.Nullable<System.DateTime> value);
     partial void OnTGBDChanged();
@@ -627,8 +627,8 @@ namespace ThanhThanh.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDsim", DbType="VarChar(20)")]
-		public string IDsim
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDsim", DbType="Int")]
+		public int IDsim
 		{
 			get
 			{
@@ -798,7 +798,7 @@ namespace ThanhThanh.DAL
 					}
 					else
 					{
-						this._IDsim = default(string);
+						this._IDsim = default(int);
 					}
 					this.SendPropertyChanged("THONGTINSIM");
 				}
@@ -1068,7 +1068,7 @@ namespace ThanhThanh.DAL
 		
 		private int _STT;
 		
-		private string _IDSim;
+		private int _IDSim;
 		
 		private System.Nullable<System.DateTime> _TGBD;
 		
@@ -1088,7 +1088,7 @@ namespace ThanhThanh.DAL
     partial void OnCreated();
     partial void OnSTTChanging(int value);
     partial void OnSTTChanged();
-    partial void OnIDSimChanging(string value);
+    partial void OnIDSimChanging(int value);
     partial void OnIDSimChanged();
     partial void OnTGBDChanging(System.Nullable<System.DateTime> value);
     partial void OnTGBDChanged();
@@ -1128,8 +1128,8 @@ namespace ThanhThanh.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDSim", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string IDSim
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDSim", DbType="Int NOT NULL")]
+		public int IDSim
 		{
 			get
 			{
@@ -1279,7 +1279,7 @@ namespace ThanhThanh.DAL
 					}
 					else
 					{
-						this._IDSim = default(string);
+						this._IDSim = default(int);
 					}
 					this.SendPropertyChanged("THONGTINSIM");
 				}

@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EF;
 
 namespace ThanhThanh.DAL
 {
-   partial class THOIGIANSUDUNG
+   public class THOIGIANSUDUNGDAL
     {
         public List<THOIGIANSUDUNG> GetAll()
         {
             QLCDTDataContext db = new QLCDTDataContext();
             return db.THOIGIANSUDUNGs.ToList();
         }
-        public List<THOIGIANSUDUNG> GebyIDSIM(string SIM)
+        public List<THOIGIANSUDUNG> GebyIDSIM(int SIM)
         {
             QLCDTDataContext db = new QLCDTDataContext();
             return db.THOIGIANSUDUNGs.Where(x => x.IDSim == SIM).ToList();

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EF;
 
 namespace ThanhThanh.DAL
 {
-    partial class CUOCTHUEBAO
+    public class CUOCTHUEBAODAL
     {
         public List<CUOCTHUEBAO > GetAll()
         {

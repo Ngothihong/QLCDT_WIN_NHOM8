@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using ThanhThanh.DAL;
+using ThanhThanh.BUL;
+using EF;
 
 
 namespace ThanhThanh.UI
@@ -29,8 +30,8 @@ namespace ThanhThanh.UI
         {
             CUOCTHUEBAO cUOCTHUEBAO = new CUOCTHUEBAO();
             cUOCTHUEBAO.IDcuoc = txtmacuoc.EditValue.ToString();
-
-            if (cUOCTHUEBAO.Exits_CUOCTHUEBAO_byMa(cUOCTHUEBAO.IDcuoc))
+            BUL_Cuocthuebao bUL_Cuocthuebao = new BUL_Cuocthuebao();
+            if (bUL_Cuocthuebao.Exits_CUOCTHUEBAO_byMa(cUOCTHUEBAO.IDcuoc))
             {
                 MessageBox.Show("Mã cước thuê bao đã tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -44,7 +45,7 @@ namespace ThanhThanh.UI
                 cUOCTHUEBAO.Ngayapdung = DateTime.Parse(txtngayapdung.EditValue.ToString());
                 try
                 {
-                    cUOCTHUEBAO.insert_cuocthuebao(cUOCTHUEBAO);
+                    bUL_Cuocthuebao.insert_cuocthuebao(cUOCTHUEBAO);
                     MessageBox.Show("Thêm cước thuê bao thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch
@@ -76,15 +77,17 @@ namespace ThanhThanh.UI
         {
 
             CUOCTHUEBAO cUOCTHUEBAO = new CUOCTHUEBAO();
-            gcCuocthuebao.DataSource = cUOCTHUEBAO.GetAll();
+            BUL_Cuocthuebao bUL_Cuocthuebao = new BUL_Cuocthuebao();
+            gcCuocthuebao.DataSource = bUL_Cuocthuebao.GetAll();
         }
 
         private void btsua_Click(object sender, EventArgs e)
         {
             CUOCTHUEBAO cUOCTHUEBAO = new CUOCTHUEBAO();
             cUOCTHUEBAO.IDcuoc = txtmacuoc.EditValue.ToString();
+            BUL_Cuocthuebao bUL_Cuocthuebao = new BUL_Cuocthuebao();
 
-            if (!cUOCTHUEBAO.Exits_CUOCTHUEBAO_byMa(cUOCTHUEBAO.IDcuoc))
+            if (!bUL_Cuocthuebao.Exits_CUOCTHUEBAO_byMa(cUOCTHUEBAO.IDcuoc))
             {
                 MessageBox.Show("Mã cước thuê bao Không tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -98,7 +101,7 @@ namespace ThanhThanh.UI
                 cUOCTHUEBAO.Ngayapdung = DateTime.Parse(txtngayapdung.EditValue.ToString());
                 try
                 {
-                    cUOCTHUEBAO.update_cuocthuebao(cUOCTHUEBAO);
+                    bUL_Cuocthuebao.update_cuocthuebao(cUOCTHUEBAO);
                     MessageBox.Show("Chỉnh sửa cước thuê bao thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch
@@ -112,6 +115,7 @@ namespace ThanhThanh.UI
 
         private void btxoa_Click(object sender, EventArgs e)
         {
+            BUL_Cuocthuebao bUL_Cuocthuebao = new BUL_Cuocthuebao();
             DialogResult dr;
             dr = MessageBox.Show("Bạn có chắc chắn xóa cước điện thoại có mã: " + txtmacuoc.EditValue.ToString(), "Cảnh báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (dr == DialogResult.OK)
@@ -119,8 +123,9 @@ namespace ThanhThanh.UI
                 try
                 {
                     CUOCTHUEBAO cUOCTHUEBAO = new CUOCTHUEBAO();
+
                     cUOCTHUEBAO.IDcuoc = txtmacuoc.EditValue.ToString();
-                   cUOCTHUEBAO.delete_cuocthuebao(cUOCTHUEBAO);
+                    bUL_Cuocthuebao.delete_cuocthuebao(cUOCTHUEBAO);
                     MessageBox.Show("Xóa cước thuê bao có mã: " + cUOCTHUEBAO.IDcuoc, "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Load_data();
                 }

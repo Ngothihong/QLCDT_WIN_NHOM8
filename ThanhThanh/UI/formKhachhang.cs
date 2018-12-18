@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ThanhThanh.DAL;
 using System.Drawing.Printing;
+using ThanhThanh.BUL;
+using EF;
+
 
 namespace ThanhThanh.UI
 {
@@ -37,13 +40,15 @@ namespace ThanhThanh.UI
         }
         public void Load_GC_KHACHHANG()
         {
-            KHACHHANG kHACHHANG = new KHACHHANG();
-            gcKhachHang.DataSource = kHACHHANG.GetAll();
+            // KHACHHANG kHACHHANG = new KHACHHANG();
+            BUL_Khachhang bUL_Khachhang = new BUL_Khachhang();
+            gcKhachHang.DataSource = bUL_Khachhang.GetAll();
         }
         public void Load_ThongtinSim()
         {
-            THONGTINSIM tHONGTINSIM = new THONGTINSIM();
-            gcThongtinSim.DataSource = tHONGTINSIM.GetAll();
+            //THONGTINSIM tHONGTINSIM = new THONGTINSIM();
+            BUL_Thongtinsim bUL_Thongtinsim = new BUL_Thongtinsim();
+            gcThongtinSim.DataSource = bUL_Thongtinsim.GetAll();
         }
 
         private void gvKhachhang_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
@@ -65,8 +70,9 @@ namespace ThanhThanh.UI
         {
             KHACHHANG kHACHHANG = new KHACHHANG();
             kHACHHANG.IDKHACHHANG = txtmakhachhang.EditValue.ToString();
+            BUL_Khachhang bUL_Khachhang = new BUL_Khachhang();
 
-            if (kHACHHANG.Exits_KH_byMa(kHACHHANG.IDKHACHHANG))
+            if (bUL_Khachhang.Exits_KH_byMa(kHACHHANG.IDKHACHHANG))
             {
                 MessageBox.Show("Mã khách hàng đã tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -81,7 +87,7 @@ namespace ThanhThanh.UI
                 kHACHHANG.CMND = txtcmnd.EditValue.ToString();
                 try
                 {
-                    kHACHHANG.insert_Khachhang(kHACHHANG);
+                    bUL_Khachhang.insert_Khachhang(kHACHHANG);
                     MessageBox.Show("Thêm khách hàng thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch
@@ -98,10 +104,11 @@ namespace ThanhThanh.UI
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
+            BUL_Khachhang bUL_Khachhang = new BUL_Khachhang();
             KHACHHANG kHACHHANG = new KHACHHANG();
             kHACHHANG.IDKHACHHANG = txtmakhachhang.EditValue.ToString();
 
-            if (!kHACHHANG.Exits_KH_byMa(kHACHHANG.IDKHACHHANG))
+            if (!bUL_Khachhang.Exits_KH_byMa(kHACHHANG.IDKHACHHANG))
             {
                 MessageBox.Show("Mã khách hàng Không tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -116,7 +123,7 @@ namespace ThanhThanh.UI
                 kHACHHANG.CMND = txtcmnd.EditValue.ToString();
                 try
                 {
-                    kHACHHANG.update_KhachHang(kHACHHANG);
+                    bUL_Khachhang.update_KhachHang(kHACHHANG);
                     MessageBox.Show("Chỉnh sửa thông tin khách hàng thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch
@@ -138,9 +145,10 @@ namespace ThanhThanh.UI
             {
                 try
                 {
+                    BUL_Khachhang bUL_Khachhang = new BUL_Khachhang();
                     KHACHHANG kHACHHANG = new KHACHHANG();
                     kHACHHANG.IDKHACHHANG = txtmakhachhang.EditValue.ToString();
-                    kHACHHANG.delete_KHACHHANG(kHACHHANG);
+                    bUL_Khachhang.delete_KHACHHANG(kHACHHANG);
                     MessageBox.Show("Xóa khách hàng có mã: " + kHACHHANG.IDKHACHHANG, "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Load_GC_KHACHHANG();
                 }
@@ -157,14 +165,14 @@ namespace ThanhThanh.UI
         private void simpleButton5_Click(object sender, EventArgs e)
         {
             THONGTINSIM tHONGTINSIM = new THONGTINSIM();
-            tHONGTINSIM.IDSim = txtmasimdk.EditValue.ToString();
-
-            if (tHONGTINSIM.Exits_KH_byMa(tHONGTINSIM.IDSim))
-            {
-                MessageBox.Show("Mã Sim đã tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
+           // tHONGTINSIM.IDSim = txtmasimdk.EditValue.ToString();
+            BUL_Thongtinsim bUL_Thongtinsim = new BUL_Thongtinsim();
+            //if (bUL_Thongtinsim.Exits_KH_byMa(tHONGTINSIM.IDSim))
+            //{
+            //    MessageBox.Show("Mã Sim đã tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //else
+            //{
 
                 tHONGTINSIM.IDKHACHHANG = txtmakhachhangdk.EditValue.ToString();
                 tHONGTINSIM.Sdt = txtSDT.EditValue.ToString();
@@ -172,7 +180,7 @@ namespace ThanhThanh.UI
                 tHONGTINSIM.CuocDK = float.Parse(txtcuocdk.EditValue.ToString());
                 try
                 {
-                    tHONGTINSIM.insert_Thongtinsim(tHONGTINSIM);
+                    bUL_Thongtinsim.insert_Thongtinsim(tHONGTINSIM);
                     MessageBox.Show("Thêm 1 đăng ký sim thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch
@@ -182,15 +190,16 @@ namespace ThanhThanh.UI
 
                 Load_GC_KHACHHANG();
 
-            }
+            
         }
 
         private void simpleButton6_Click(object sender, EventArgs e)
         {
             THONGTINSIM tHONGTINSIM = new THONGTINSIM();
-            tHONGTINSIM.IDSim = txtmasimdk.EditValue.ToString();
+            BUL_Thongtinsim bUL_Thongtinsim = new BUL_Thongtinsim();
+            tHONGTINSIM.IDSim =int.Parse( txtmasimdk.EditValue.ToString());
 
-            if (!tHONGTINSIM.Exits_KH_byMa(tHONGTINSIM.IDSim))
+            if (!bUL_Thongtinsim.Exits_KH_byMa(tHONGTINSIM.IDSim))
             {
                 MessageBox.Show("Mã Sim không tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -203,7 +212,7 @@ namespace ThanhThanh.UI
                 tHONGTINSIM.CuocDK = float.Parse(txtcuocdk.EditValue.ToString());
                 try
                 {
-                    tHONGTINSIM.update_Thongtinsim(tHONGTINSIM);
+                    bUL_Thongtinsim.update_Thongtinsim(tHONGTINSIM);
                     MessageBox.Show("Chỉnh sửa thông tin ĐK sim thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch
@@ -225,9 +234,10 @@ namespace ThanhThanh.UI
             {
                 try
                 {
+                    BUL_Thongtinsim bUL_Thongtinsim = new BUL_Thongtinsim();
                      THONGTINSIM tHONGTINSIM = new THONGTINSIM();
-                    tHONGTINSIM.IDSim = txtmasimdk.EditValue.ToString();
-                    tHONGTINSIM.delete_thongtinSim(tHONGTINSIM);
+                    tHONGTINSIM.IDSim =int.Parse( txtmasimdk.EditValue.ToString());
+                    bUL_Thongtinsim.delete_thongtinSim(tHONGTINSIM);
                     MessageBox.Show("Xóa ĐK sim có mã: " + tHONGTINSIM.IDSim, "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Load_GC_KHACHHANG();
                 }
@@ -245,7 +255,7 @@ namespace ThanhThanh.UI
             
             List<THONGTINSIM> tHONGTINSIMs = ((List<THONGTINSIM>)gvThongtinSim.DataSource);
             THONGTINSIM tHONGTINSIM = tHONGTINSIMs[gvThongtinSim.FocusedRowHandle];
-            txtmasimdk.Text = tHONGTINSIM.IDSim;
+            txtmasimdk.Text = tHONGTINSIM.IDSim.ToString();
             txtmakhachhangdk.Text = tHONGTINSIM.IDKHACHHANG;
             txtSDT.Text = tHONGTINSIM.Sdt;
             txtngadk.Text = tHONGTINSIM.NgayDK.ToString();
@@ -260,6 +270,7 @@ namespace ThanhThanh.UI
 
         private void simpleButton4_Click(object sender, EventArgs e)
         {
+            BUL_Thongtinsim bUL_Thongtinsim = new BUL_Thongtinsim();
             THONGTINSIM tHONGTINSIM = new THONGTINSIM();
             if( txtmakhachhang.EditValue == null)
             {
@@ -268,7 +279,8 @@ namespace ThanhThanh.UI
             else
             {
                 tHONGTINSIM.IDKHACHHANG = txtmakhachhang.EditValue.ToString();
-                gcThongtinSim.DataSource = tHONGTINSIM.GetThongtinSim_bymakhachhang(tHONGTINSIM.IDKHACHHANG);
+                txtmakhachhangdk.Text = tHONGTINSIM.IDKHACHHANG; 
+                gcThongtinSim.DataSource = bUL_Thongtinsim.GetThongtinSim_bymakhachhang(tHONGTINSIM.IDKHACHHANG);
             }
             
         }
@@ -281,13 +293,11 @@ namespace ThanhThanh.UI
             }
             else
             {
+                BUL_Thongtinsim bUL_Thongtinsim = new BUL_Thongtinsim();
                 THONGTINSIM tHONGTINSIM = new THONGTINSIM();
-                //KHACHHANG kHACHHANG = new KHACHHANG();
-                //HOADON hOADON = new HOADON();
-                tHONGTINSIM.IDSim = txtmasimdk.EditValue.ToString();
-               // hOADON.IDHD = txtmahoadon.EditValue.ToString();
+                tHONGTINSIM.IDSim =int.Parse( txtmasimdk.EditValue.ToString());
 
-                if (!tHONGTINSIM.Exits_KH_byMa(tHONGTINSIM.IDSim))
+                if (!bUL_Thongtinsim.Exits_KH_byMa(tHONGTINSIM.IDSim))
                 {
                     MessageBox.Show("Không tồn tại đăng ký sim có mã:" + tHONGTINSIM.IDSim.ToString(), "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -320,13 +330,13 @@ namespace ThanhThanh.UI
         {
             //tao doi tuong
             THONGTINSIM tHONGTINSIM = new THONGTINSIM();
-            //KHACHHANG kHACHHANG = new KHACHHANG();
-            //HOADON hOADON = new HOADON();
-            tHONGTINSIM.IDSim = txtmasimdk.EditValue.ToString();
+            BUL_Thongtinsim bUL_Thongtinsim = new BUL_Thongtinsim();
+            tHONGTINSIM.IDSim =int.Parse( txtmasimdk.EditValue.ToString());
 
-            tHONGTINSIM = tHONGTINSIM.GetByMa(tHONGTINSIM.IDSim);
+            tHONGTINSIM = bUL_Thongtinsim.GetByMa(tHONGTINSIM.IDSim);
+            BUL_Khachhang bUL_Khachhang = new BUL_Khachhang();
             KHACHHANG kHACHHANG = new KHACHHANG();
-            kHACHHANG = kHACHHANG.GetByMa(tHONGTINSIM.IDKHACHHANG);
+            kHACHHANG = bUL_Khachhang.GetByMa(tHONGTINSIM.IDKHACHHANG);
             // ve hoa don
             Graphics graphic = e.Graphics;
             Font font = new Font("Courier New", 12);
@@ -340,7 +350,7 @@ namespace ThanhThanh.UI
             // graphic.DrawString(top, font, new SolidBrush(Color.Black), startX, startY + offset);
 
             graphic.DrawString("Mã đăng ký", new Font("Courier New", 12, FontStyle.Bold), new SolidBrush(Color.Black), startX, startY + offset);
-            graphic.DrawString(tHONGTINSIM.IDSim, new Font("Courier New", 12, FontStyle.Bold), new SolidBrush(Color.Black), startX + 250, startY + offset);
+            graphic.DrawString(tHONGTINSIM.IDSim.ToString(), new Font("Courier New", 12, FontStyle.Bold), new SolidBrush(Color.Black), startX + 250, startY + offset);
 
             offset = offset + (int)FontHeight; //make the spacing consistent
             graphic.DrawString("----------------------------------", font, new SolidBrush(Color.Black), startX, startY + offset);

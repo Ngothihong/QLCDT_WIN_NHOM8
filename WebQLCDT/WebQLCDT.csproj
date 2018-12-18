@@ -50,6 +50,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -176,6 +177,9 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BUL\BUL_Hoadon.cs" />
+    <Compile Include="BUL\BUL_Thoigiansudung.cs" />
+    <Compile Include="BUL\BUL_Thongtinsim.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -183,6 +187,9 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DAL\DAL_Hoadon.cs" />
+    <Compile Include="DAL\DAL_thoigiansudung.cs" />
+    <Compile Include="DAL\DAL_Thongtinsim.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -238,9 +245,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ThanhThanh\QLCDT.csproj">
-      <Project>{8809af43-33e0-40b7-8d2a-1565b8de7980}</Project>
-      <Name>QLCDT</Name>
+    <ProjectReference Include="..\EF\EF.csproj">
+      <Project>{b43c8e68-1012-4377-9e58-3b4482285a77}</Project>
+      <Name>EF</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

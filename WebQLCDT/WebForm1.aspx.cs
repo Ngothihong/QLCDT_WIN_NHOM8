@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ThanhThanh.DAL;
+using EF;
+using WebQLCDT.BUL;
 
 namespace WebQLCDT
 {
@@ -12,8 +13,9 @@ namespace WebQLCDT
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            THOIGIANSUDUNG tHOIGIANSUDUNG = new THOIGIANSUDUNG();
-            gvChiTietCuocGoi.DataSource =tHOIGIANSUDUNG.GetAll();
+            //THOIGIANSUDUNG tHOIGIANSUDUNG = new THOIGIANSUDUNG();
+            BUL_Thoigiansudung bUL_Thoigiansudung = new BUL_Thoigiansudung();
+            gvChiTietCuocGoi.DataSource = bUL_Thoigiansudung.GetAll();
             gvChiTietCuocGoi.DataBind();
         }
 
@@ -21,11 +23,14 @@ namespace WebQLCDT
         {
             string Sim = txtSim.Text;
             string mahoadon = txtmahoadon.Text;
-            THONGTINSIM tHONGTINSIM = new THONGTINSIM();
-            THOIGIANSUDUNG tHOIGIANSUDUNG = new THOIGIANSUDUNG();
+             THONGTINSIM tHONGTINSIM = new THONGTINSIM();
+            BUL_Thongtinsim bUL_Thongtinsim = new BUL_Thongtinsim();
+            BUL_Thoigiansudung bUL_Thoigiansudung = new BUL_Thoigiansudung();
+            BUL_Hoadon bUL_Hoadon = new BUL_Hoadon();
+            //  THOIGIANSUDUNG tHOIGIANSUDUNG = new THOIGIANSUDUNG();
             if (Sim != "") // sim ko rong
             {
-                var thongtinsim1 = tHONGTINSIM.GetbySDT(Sim);
+                var thongtinsim1 = bUL_Thongtinsim.GetbySDT(Sim);
                 //var thongtinsim1 = from x in qLTinhCuocDT.THONGTINSIMs
                 //                   where x.Sdt == Sim
                 //                   orderby x.IDSim descending
@@ -45,7 +50,7 @@ namespace WebQLCDT
 
                     if (mahoadon == "") // mahoadon rong
                     {
-                        List<THOIGIANSUDUNG> list = tHOIGIANSUDUNG.GebyIDSIM(tHONGTINSIM.IDSim);
+                        List<THOIGIANSUDUNG> list = bUL_Thoigiansudung.GebyIDSIM(tHONGTINSIM.IDSim);
                         // List<THOIGIANSUDUNG> list = qLTinhCuocDT.THOIGIANSUDUNGs.Where(x => x.IDSim == tHONGTINSIM.IDSim).ToList();
                         gvChiTietCuocGoi.DataSource = list;
                         gvChiTietCuocGoi.DataBind();
@@ -53,15 +58,13 @@ namespace WebQLCDT
                     else // mahoadon ko rong
                     {
                         // HOADON hoadon = qLTinhCuocDT.HOADONs.Where(x => x.IDHD == mahoadon).SingleOrDefault();
-                        HOADON hOADON = new HOADON();
-                        hOADON = hOADON.GetByMa(mahoadon);
+                         HOADON hOADON = new HOADON();
+                        hOADON = bUL_Hoadon.GetByMa(mahoadon);
 
                         if (hOADON != null) // ton tai hoa don
                         {
-                            //var  list = (from x in qLTinhCuocDT.THOIGIANSUDUNGs
-                            //                   where x.IDSim == hOADON.IDsim && x.TGBD >= hOADON.TGBD && x.TGBD <= hOADON.TGKT
-                            //                   select x).ToList();
-                            var list = tHOIGIANSUDUNG.Get_by_hoadon(hOADON);
+                           
+                            var list = bUL_Thoigiansudung.Get_by_hoadon(hOADON);
                             // List<THOIGIANSUDUNG> list = qLTinhCuocDT.THOIGIANSUDUNGs.Where(x => x.IDSim == tHONGTINSIM.IDSim).ToList();
                             gvChiTietCuocGoi.DataSource = list;
                             gvChiTietCuocGoi.DataBind();
@@ -87,14 +90,15 @@ namespace WebQLCDT
                 {
                     // HOADON hoadon = qLTinhCuocDT.HOADONs.Where(x => x.IDHD == mahoadon).SingleOrDefault();
                     HOADON hOADON = new HOADON();
-                    hOADON = hOADON.GetByMa(mahoadon);
+                  
+                    hOADON = bUL_Hoadon.GetByMa(mahoadon);
 
                     if (hOADON != null) // ton tai hoa don
                     {
                         //var  list = (from x in qLTinhCuocDT.THOIGIANSUDUNGs
                         //                   where x.IDSim == hOADON.IDsim && x.TGBD >= hOADON.TGBD && x.TGBD <= hOADON.TGKT
                         //                   select x).ToList();
-                        var list = tHOIGIANSUDUNG.Get_by_hoadon(hOADON);
+                        var list = bUL_Thoigiansudung.Get_by_hoadon(hOADON);
                         // List<THOIGIANSUDUNG> list = qLTinhCuocDT.THOIGIANSUDUNGs.Where(x => x.IDSim == tHONGTINSIM.IDSim).ToList();
                         gvChiTietCuocGoi.DataSource = list;
                         gvChiTietCuocGoi.DataBind();

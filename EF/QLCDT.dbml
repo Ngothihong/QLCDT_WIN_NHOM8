@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLCuocDT" Class="QLCDTDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-3MGMVIV;Initial Catalog=QLCuocDT;Integrated Security=True" SettingsObjectName="ThanhThanh.Properties.Settings" SettingsPropertyName="QLCuocDTConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-3MGMVIV;Initial Catalog=QLCuocDT;Integrated Security=True" SettingsObjectName="EF.Properties.Settings" SettingsPropertyName="QLCuocDTConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.CUOCTHUEBAO" Member="CUOCTHUEBAOs">
     <Type Name="CUOCTHUEBAO">
       <Column Name="IDcuoc" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -12,7 +12,7 @@
   </Table>
   <Table Name="dbo.THONGTINSIM" Member="THONGTINSIMs">
     <Type Name="THONGTINSIM">
-      <Column Name="IDSim" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDSim" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="IDKHACHHANG" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="Sdt" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="NgayDK" Type="System.DateTime" DbType="Date" CanBeNull="true" />
@@ -25,7 +25,7 @@
   <Table Name="dbo.HOADON" Member="HOADONs">
     <Type Name="HOADON">
       <Column Name="IDHD" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="IDsim" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="IDsim" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TGBD" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="TGKT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="SophutBN" Type="System.Double" DbType="Float" CanBeNull="true" />
@@ -50,7 +50,7 @@
   <Table Name="dbo.THOIGIANSUDUNG" Member="THOIGIANSUDUNGs">
     <Type Name="THOIGIANSUDUNG">
       <Column Name="STT" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="IDSim" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="IDSim" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TGBD" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="TGKT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="SophutBN" Type="System.Double" DbType="Float" CanBeNull="true" />

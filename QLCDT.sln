@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLCDT", "ThanhThanh\QLCDT.c
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebQLCDT", "WebQLCDT\WebQLCDT.csproj", "{B23C73E7-26F3-4E6B-B62C-591DB87D201D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF", "EF\EF.csproj", "{B43C8E68-1012-4377-9E58-3B4482285A77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B23C73E7-26F3-4E6B-B62C-591DB87D201D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B23C73E7-26F3-4E6B-B62C-591DB87D201D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B23C73E7-26F3-4E6B-B62C-591DB87D201D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B43C8E68-1012-4377-9E58-3B4482285A77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B43C8E68-1012-4377-9E58-3B4482285A77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B43C8E68-1012-4377-9E58-3B4482285A77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B43C8E68-1012-4377-9E58-3B4482285A77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

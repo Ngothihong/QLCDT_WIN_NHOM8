@@ -11,6 +11,8 @@ using ThanhThanh.DAL;
 using System.Threading;
 using System.Drawing.Printing;
 using Microsoft.VisualBasic;
+using EF;
+using ThanhThanh.BUL;
 
 namespace ThanhThanh.UI
 {
@@ -685,24 +687,25 @@ namespace ThanhThanh.UI
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
+            BUL_Hoadon bUL_Hoadon = new BUL_Hoadon();
             HOADON hOADON = new HOADON();
-            hOADON.IDHD = txtmahoadon.EditValue.ToString();
+            hOADON.IDHD = txtmahoadon.Text.ToString();
 
-            if (hOADON.Exits_KH_byMa(hOADON.IDHD))
+            if (bUL_Hoadon.Exits_KH_byMa(hOADON.IDHD))
             {
                 MessageBox.Show("Mã hóa đơn đã tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
 
-                hOADON.IDsim = cbMasim.EditValue.ToString();
+                hOADON.IDsim =int.Parse( cbMasim.EditValue.ToString());
                 hOADON.TGBD = DateTime.Parse(txtngabd.EditValue.ToString());
                 hOADON.TGKT = DateTime.Parse(txtngkt.EditValue.ToString());
-                hOADON.SophutBN = hOADON.TinhSophutbanngay(hOADON);
-                hOADON.SophutBD = hOADON.TinhSophutbandem(hOADON);
-                hOADON.TongSoTien = hOADON.Tinhtonggiatien(hOADON);
+                hOADON.SophutBN = bUL_Hoadon.TinhSophutbanngay(hOADON);
+                hOADON.SophutBD = bUL_Hoadon.TinhSophutbandem(hOADON);
+                hOADON.TongSoTien = bUL_Hoadon.Tinhtonggiatien(hOADON);
                 hOADON.Trangthai = cbtrangthai.EditValue.ToString();
-                if (!hOADON.Kietrangayhoadon(hOADON))
+                if (!bUL_Hoadon.Kietrangayhoadon(hOADON))
                 {
                     MessageBox.Show("Khoảng Thời gian tính hóa đơn đã được tính trước đó, Vui lòng kiểm tra lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -710,7 +713,7 @@ namespace ThanhThanh.UI
                 {
                     try
                     {
-                        hOADON.insert_HOADON(hOADON);
+                        bUL_Hoadon.insert_HOADON(hOADON);
                         MessageBox.Show("Thêm Hóa đơn thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch
@@ -728,22 +731,22 @@ namespace ThanhThanh.UI
         {
             HOADON hOADON = new HOADON();
             hOADON.IDHD = txtmahoadon.EditValue.ToString();
-
-            if (!hOADON.Exits_KH_byMa(hOADON.IDHD))
+            BUL_Hoadon bUL_Hoadon = new BUL_Hoadon();
+            if (!bUL_Hoadon.Exits_KH_byMa(hOADON.IDHD))
             {
                 MessageBox.Show("Mã hóa đơn Không tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
 
-                hOADON.IDsim = cbMasim.EditValue.ToString();
+                hOADON.IDsim = int.Parse(cbMasim.EditValue.ToString());
                 hOADON.TGBD = DateTime.Parse(txtngabd.EditValue.ToString());
                 hOADON.TGKT = DateTime.Parse(txtngkt.EditValue.ToString());
-                hOADON.SophutBN = hOADON.TinhSophutbanngay(hOADON);
-                hOADON.SophutBD = hOADON.TinhSophutbandem(hOADON);
-                hOADON.TongSoTien = hOADON.Tinhtonggiatien(hOADON);
+                hOADON.SophutBN = bUL_Hoadon.TinhSophutbanngay(hOADON);
+                hOADON.SophutBD = bUL_Hoadon.TinhSophutbandem(hOADON);
+                hOADON.TongSoTien = bUL_Hoadon.Tinhtonggiatien(hOADON);
                 hOADON.Trangthai = cbtrangthai.EditValue.ToString();
-                if (!hOADON.Kietrangayhoadon(hOADON))
+                if (!bUL_Hoadon.Kietrangayhoadon(hOADON))
                 {
                     MessageBox.Show("Khoảng Thời gian tính hóa đơn đã được tính trước đó, Vui lòng kiểm tra lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -751,7 +754,7 @@ namespace ThanhThanh.UI
                 {
                     try
                     {
-                        hOADON.update_Hoadon(hOADON);
+                        bUL_Hoadon.update_Hoadon(hOADON);
                         MessageBox.Show("Chỉnh sửa thông tin khách hàng thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch
@@ -776,8 +779,9 @@ namespace ThanhThanh.UI
                     try
                     {
                         HOADON hOADON = new HOADON();
+                        BUL_Hoadon bUL_Hoadon = new BUL_Hoadon();
                         hOADON.IDHD = txtmahoadon.EditValue.ToString();
-                        hOADON.delete_HOADON(hOADON);
+                        bUL_Hoadon.delete_HOADON(hOADON);
                         MessageBox.Show("Xóa hóa đơn có mã: " + hOADON.IDHD, "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Load_HoaDon();
                     }
@@ -796,7 +800,8 @@ namespace ThanhThanh.UI
 
         private void simpleButton4_Click(object sender, EventArgs e)
         {
-            HOADON hOADON = new HOADON();
+             HOADON hOADON = new HOADON();
+            BUL_Hoadon bUL_Hoadon = new BUL_Hoadon();
             if (txtmahoadon.EditValue == null)
             {
                 MessageBox.Show("Bạn chưa chọn mã hóa đơn", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -805,15 +810,16 @@ namespace ThanhThanh.UI
             {
                 hOADON.IDHD = txtmahoadon.EditValue.ToString();
 
-                if (!hOADON.Exits_KH_byMa(hOADON.IDHD))
+                if (!bUL_Hoadon.Exits_KH_byMa(hOADON.IDHD))
                 {
                     MessageBox.Show("Mã hóa đơn Không tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    hOADON = hOADON.GetByMa(hOADON.IDHD);
-                    THOIGIANSUDUNG tHOIGIANSUDUNG = new THOIGIANSUDUNG();
-                    gcThoigiansudung.DataSource = tHOIGIANSUDUNG.Get_by_hoadon(hOADON);
+                    hOADON = bUL_Hoadon.GetByMa(hOADON.IDHD);
+                    // THOIGIANSUDUNG tHOIGIANSUDUNG = new THOIGIANSUDUNG();
+                    BUL_Thoigiansudung bUL_Thoigiansudung = new BUL_Thoigiansudung();
+                    gcThoigiansudung.DataSource = bUL_Thoigiansudung.Get_by_hoadon(hOADON);
                 }
             }
             
@@ -827,18 +833,21 @@ namespace ThanhThanh.UI
         }
         public void Load_HoaDon()
         {
-            HOADON hOADON = new HOADON();
-            gcHoadon.DataSource = hOADON.GetAll();
+            // HOADON hOADON = new HOADON();
+            BUL_Hoadon bUL_Hoadon = new BUL_Hoadon();
+            gcHoadon.DataSource = bUL_Hoadon.GetAll();
         }
         public void Load_Thoigiansudung()
         {
-            THOIGIANSUDUNG tHOIGIANSUDUNG = new THOIGIANSUDUNG();
-            gcThoigiansudung.DataSource = tHOIGIANSUDUNG.GetAll();
+            //THOIGIANSUDUNG tHOIGIANSUDUNG = new THOIGIANSUDUNG();
+            BUL_Thoigiansudung bUL_Thoigiansudung = new BUL_Thoigiansudung();
+            gcThoigiansudung.DataSource = bUL_Thoigiansudung.GetAll();
         }
         public void Load_cb_IDSIM()
         {
-            THONGTINSIM tHONGTINSIM = new THONGTINSIM();
-            var list = tHONGTINSIM.GetAllIDSIM();
+            //BUL_Thongtinsim tHONGTINSIM = new THONGTINSIM();
+            BUL_Thongtinsim bUL_Thongtinsim = new BUL_Thongtinsim();
+            var list = bUL_Thongtinsim.GetAllIDSIM();
             foreach (var item in list)
               cbMasim.Properties.Items.Add(item);
         }
@@ -848,7 +857,7 @@ namespace ThanhThanh.UI
             List<HOADON> hOADONs= ((List<HOADON>)gvHoadon.DataSource);
             HOADON hOADON = hOADONs[gvHoadon.FocusedRowHandle];
             txtmahoadon.Text = hOADON.IDHD;
-            cbMasim.Text = hOADON.IDsim;
+            cbMasim.Text = hOADON.IDsim.ToString();
             txtngabd.Text = hOADON.TGBD.ToString();
             txtngkt.Text = hOADON.TGKT.ToString();
             txtsopphutbn.Text = hOADON.SophutBN.ToString();
@@ -877,9 +886,10 @@ namespace ThanhThanh.UI
             {
 
                 HOADON hOADON = new HOADON();
+                BUL_Hoadon bUL_Hoadon = new BUL_Hoadon();
                 hOADON.IDHD = txtmahoadon.EditValue.ToString();
 
-                if (!hOADON.Exits_KH_byMa(hOADON.IDHD))
+                if (!bUL_Hoadon.Exits_KH_byMa(hOADON.IDHD))
                 {
                     MessageBox.Show("Không tồn tại hóa đơn có mã:" + hOADON.IDHD.ToString(), "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -912,13 +922,16 @@ namespace ThanhThanh.UI
         {
             //tao doi tuong
             HOADON hOADON = new HOADON();
+            BUL_Hoadon bUL_Hoadon = new BUL_Hoadon();
             hOADON.IDHD = txtmahoadon.EditValue.ToString();
            
-                hOADON = hOADON.GetByMa(hOADON.IDHD);
-                KHACHHANG kHACHHANG = new KHACHHANG();
-                kHACHHANG = kHACHHANG.Get_KHACHHANG_BySIM(hOADON.IDsim)[0];
+                hOADON = bUL_Hoadon.GetByMa(hOADON.IDHD);
+             KHACHHANG kHACHHANG = new KHACHHANG();
+            BUL_Khachhang bUL_Khachhang = new BUL_Khachhang();
+                kHACHHANG = bUL_Khachhang.Get_KHACHHANG_BySIM(hOADON.IDsim)[0];
                 THONGTINSIM tHONGTINSIM = new THONGTINSIM();
-                tHONGTINSIM = tHONGTINSIM.GetByMa(hOADON.IDsim);
+            BUL_Thongtinsim bUL_Thongtinsim = new BUL_Thongtinsim();
+                tHONGTINSIM = bUL_Thongtinsim.GetByMa(hOADON.IDsim);
             // ve hoa don
                 Graphics graphic = e.Graphics;
                 Font font = new Font("Courier New", 12);
@@ -992,7 +1005,7 @@ namespace ThanhThanh.UI
 
                 offset = offset + (int)FontHeight + 5; //make the spacing consistent              
                 graphic.DrawString("Mã sim", font, new SolidBrush(Color.Black), startX, startY + offset);
-                graphic.DrawString(hOADON.IDsim, font, new SolidBrush(Color.Black), startX + 250, startY + offset);
+                graphic.DrawString(hOADON.IDsim.ToString(), font, new SolidBrush(Color.Black), startX + 250, startY + offset);
 
                 offset = offset + (int)FontHeight + 5; //make the spacing consistent              
                 graphic.DrawString("Số điện thoại", font, new SolidBrush(Color.Black), startX, startY + offset);

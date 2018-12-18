@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EF;
 
 namespace ThanhThanh.DAL
 {
-   partial class KHACHHANG
+   public class KHACHHANGDAL
     {
         public List<KHACHHANG> GetAll()
         {
@@ -33,7 +34,7 @@ namespace ThanhThanh.DAL
             }
             return true;
         }
-        public List <KHACHHANG> Get_KHACHHANG_BySIM(String ma)
+        public List <KHACHHANG> Get_KHACHHANG_BySIM(int ma)
         {
             QLCDTDataContext db = new QLCDTDataContext();
            var model = (from a in db.THONGTINSIMs

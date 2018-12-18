@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode3 = new DevExpress.XtraGrid.GridLevelNode();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode4 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formKhachhang));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btxuathđK = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
             this.btxoadk = new DevExpress.XtraEditors.SimpleButton();
             this.btsuadk = new DevExpress.XtraEditors.SimpleButton();
@@ -84,7 +85,6 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.txtmakhachhang = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.btxuathđK = new DevExpress.XtraEditors.SimpleButton();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -148,6 +148,15 @@
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Đăng ký Sim";
+            // 
+            // btxuathđK
+            // 
+            this.btxuathđK.Location = new System.Drawing.Point(398, 150);
+            this.btxuathđK.Name = "btxuathđK";
+            this.btxuathđK.Size = new System.Drawing.Size(95, 23);
+            this.btxuathđK.TabIndex = 5;
+            this.btxuathđK.Text = "Xuất hóa đơn ĐK";
+            this.btxuathđK.Click += new System.EventHandler(this.btxuathđK_Click);
             // 
             // simpleButton5
             // 
@@ -237,6 +246,7 @@
             // 
             this.txtmasimdk.Location = new System.Drawing.Point(109, 21);
             this.txtmasimdk.Name = "txtmasimdk";
+            this.txtmasimdk.Properties.ReadOnly = true;
             this.txtmasimdk.Size = new System.Drawing.Size(144, 20);
             this.txtmasimdk.TabIndex = 2;
             // 
@@ -351,11 +361,11 @@
             // gcKhachHang
             // 
             this.gcKhachHang.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode3.RelationName = "Level1";
-            gridLevelNode4.RelationName = "Level2";
+            gridLevelNode1.RelationName = "Level1";
+            gridLevelNode2.RelationName = "Level2";
             this.gcKhachHang.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode3,
-            gridLevelNode4});
+            gridLevelNode1,
+            gridLevelNode2});
             this.gcKhachHang.Location = new System.Drawing.Point(3, 17);
             this.gcKhachHang.MainView = this.gvKhachhang;
             this.gcKhachHang.Name = "gcKhachHang";
@@ -613,15 +623,6 @@
             this.labelControl1.Size = new System.Drawing.Size(72, 13);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Mã khách hàng";
-            // 
-            // btxuathđK
-            // 
-            this.btxuathđK.Location = new System.Drawing.Point(398, 150);
-            this.btxuathđK.Name = "btxuathđK";
-            this.btxuathđK.Size = new System.Drawing.Size(95, 23);
-            this.btxuathđK.TabIndex = 5;
-            this.btxuathđK.Text = "Xuất hóa đơn ĐK";
-            this.btxuathđK.Click += new System.EventHandler(this.btxuathđK_Click);
             // 
             // printDocument1
             // 

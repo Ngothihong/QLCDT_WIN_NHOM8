@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EF;
 
 namespace ThanhThanh.DAL
 {
-   partial class THONGTINSIM
+   public class THONGTINSIMDAL
     {
         public List<THONGTINSIM> GetAll()
         {
@@ -23,19 +24,19 @@ namespace ThanhThanh.DAL
             return thongtinsim1.ToList();
 
         }
-        public IEnumerable<string> GetAllIDSIM()
+        public IEnumerable<int> GetAllIDSIM()
         {
             QLCDTDataContext db = new QLCDTDataContext();
             var listSIM = from a in db.THONGTINSIMs select a.IDSim;
             return listSIM;
         }
   
-        public THONGTINSIM GetByMa(String ma)
+        public THONGTINSIM GetByMa(int ma)
         {
             QLCDTDataContext db = new QLCDTDataContext();
             return db.THONGTINSIMs.Where(a => a.IDSim== ma).SingleOrDefault();
         }
-        public bool Exits_KH_byMa(string ma)
+        public bool Exits_KH_byMa(int ma)
         {
             if (GetByMa(ma) == null)
             {
